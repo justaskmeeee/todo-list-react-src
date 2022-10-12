@@ -1,0 +1,7 @@
+@import '/src/functions/pxToRem.scss';
+
+.title {
+  font-size: toRem(60);
+  color: white;
+  text-shadow: toRem(5) 0 rgb(15, 107, 187); 
+}
