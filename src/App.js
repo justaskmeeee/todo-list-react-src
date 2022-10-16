@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import './App.scss';
 import Footer from './components/Footer/Footer';
 import InputField from './components/TodoList/InputField';
 import Title from './components/Title/Title';
 import TodoList from './components/TodoList/TodoList';
-import { todoAdd, countTodo } from './store/slices/todoSlice';
+import { todoAdd } from './store/slices/todoSlice';
 
 function App() {
   const [value, setValue] = useState('');
