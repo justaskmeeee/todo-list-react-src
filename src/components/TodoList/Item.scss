@@ -1,0 +1,9 @@
+@import '../../functions/pxToRem.scss';
+
+li {
+  font-size: toRem(20);
+}
+
+.completed {
+  text-decoration: line-through;
+}

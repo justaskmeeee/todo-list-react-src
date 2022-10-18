@@ -26,6 +26,11 @@ export const todoSlice = createSlice({
 
       currentTodoItem.completed = !currentTodoItem.completed;
     },
+    editTodo(state, action) {
+      let currentTodoItem = state.items.find(item => item.id === action.payload.id);
+      
+      currentTodoItem.text = action.payload.text;
+    },
     countTodo(state) {
       const notCompletedTodos = state.items.filter(item => !item.completed); 
       state.count = notCompletedTodos.length;
@@ -33,6 +38,6 @@ export const todoSlice = createSlice({
   }
 }) 
 
-export const { todoAdd, todoRemove, todoStatus,countTodo } = todoSlice.actions;
+export const { todoAdd, todoRemove, todoStatus, editTodo, countTodo } = todoSlice.actions;
 
 export default todoSlice.reducer;

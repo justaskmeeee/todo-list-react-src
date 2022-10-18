@@ -6,6 +6,7 @@ import InputField from './components/TodoList/InputField';
 import Title from './components/Title/Title';
 import TodoList from './components/TodoList/TodoList';
 import { todoAdd } from './store/slices/todoSlice';
+import './components/TodoList/TodoList.scss';
 
 function App() {
   const [value, setValue] = useState('');
