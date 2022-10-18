@@ -1,15 +1,18 @@
 import React from "react";
 
-const InputField = ({text, handleInput, handleAddTodo}) => {
+const InputField = ({text, handleInput, handleAddTodo, handleToggleAll}) => {
   return (
-    <input 
-      type="text" 
-      value={text}
-      onChange={handleInput} 
-      onKeyDown={handleAddTodo}
-      placeholder="What needs to be done?" 
-      autoFocus
-    />
+    <div>
+      <button onClick={handleToggleAll}>Click</button>
+      <input 
+        type="text" 
+        value={text}
+        onChange={handleInput} 
+        onKeyDown={handleAddTodo}
+        placeholder="What needs to be done?" 
+        autoFocus
+      />
+    </div>
   );
 }
 

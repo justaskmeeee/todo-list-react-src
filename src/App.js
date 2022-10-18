@@ -5,7 +5,7 @@ import Footer from './components/Footer/Footer';
 import InputField from './components/TodoList/InputField';
 import Title from './components/Title/Title';
 import TodoList from './components/TodoList/TodoList';
-import { todoAdd } from './store/slices/todoSlice';
+import { todoAdd, toggleTodos } from './store/slices/todoSlice';
 import './components/TodoList/TodoList.scss';
 
 function App() {
@@ -23,6 +23,10 @@ function App() {
     }
   }  
 
+  const toggleAllTodoItems = () => {
+    dispatch(toggleTodos());
+  }
+
   return (
     <div className="App">
       <Title />
@@ -30,6 +34,7 @@ function App() {
         text={value} 
         handleInput={(event) => setInputValue(event)} 
         handleAddTodo={(event) => addNewTodo(event)} 
+        handleToggleAll={() => toggleAllTodoItems()}
       />
       <TodoList />
       <Footer />
