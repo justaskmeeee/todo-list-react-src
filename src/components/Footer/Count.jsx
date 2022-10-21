@@ -1,12 +1,12 @@
 import React from "react";
 
+const setCountTemplate = (count) => {
+  return count > 1 ? `${count} items left` : `${count} item left`;
+}
+
 const Count = ({value}) => {
-  const setCountTemplate = () => {
-    return value > 1 ? `${value} items left` : `${value} item left`;
-  }
-  
   return (
-    <span>{setCountTemplate()}</span>
+    <span>{setCountTemplate(value)}</span>
   );
 }
 

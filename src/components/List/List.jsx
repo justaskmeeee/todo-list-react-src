@@ -3,17 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import Item from "./Item";
 import { countTodo } from "../../store/slices/todoSlice";
 
-const TodoList = () => {
-  const todoItems = useSelector(state => state.todos.items);
-  const dispatch = useDispatch();
-  
-  useEffect(() => {
-    dispatch(countTodo());
-  }, [todoItems])
-
+const List = ({filter}) => {  
   return (
     <ul>
-      {todoItems.map(item => {
+      {filter.map(item => {
         return <Item 
           {...item}
           key={item.id}
@@ -23,4 +16,4 @@ const TodoList = () => {
   );
 }
 
-export default TodoList;
+export default List; 

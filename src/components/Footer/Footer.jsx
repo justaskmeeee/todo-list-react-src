@@ -1,15 +1,23 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import ClearButton from "./ClearButton";
+import { React, useEffect } from "react";
 import Count from "./Count";
+import Filters from "./Filters";
+import ClearButton from "./ClearButton";
+import { useDispatch, useSelector } from "react-redux";
+import { countTodo } from "../../store/slices/todoSlice";
 
-const Footer = () => { 
-  const numberOfTodos = useSelector(state => state.todos.count);
+const Footer = () => {
+  const todoItems = useSelector(state => state.todos.items);
+  const countOfTodoItems = useSelector(state => state.todos.count);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(countTodo());
+  }, [todoItems]);
 
   return (
     <div>
-      {numberOfTodos !== 0 ? <Count value={numberOfTodos} /> : ''}
-      {/*  */}
+      <Count value={countOfTodoItems} />
+      <Filters />
       <ClearButton />
     </div>
   );
