@@ -6,7 +6,7 @@ const setCountTemplate = (count) => {
 
 const Count = ({value}) => {
   return (
-    <span>{setCountTemplate(value)}</span>
+    <span className='count'>{setCountTemplate(value)}</span>
   );
 }
 
