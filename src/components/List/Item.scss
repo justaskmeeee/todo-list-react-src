@@ -1,0 +1,54 @@
+@import '../../functions/pxToRem.scss';
+
+.todo-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  min-height: toRem(45);
+  border: 1px solid black;
+  font-size: toRem(30);
+  background: rgb(255, 255, 255);
+
+
+  &__toggle {
+    position: absolute;
+    left: 0;
+  }
+
+  &__text {
+    width: calc(100% - 100px);
+    max-width: toRem(600);
+    padding-top: toRem(15);
+    padding-right: toRem(50);
+    padding-bottom: toRem(15);
+    word-wrap: break-word;
+  }
+
+  &__editing {
+    position: absolute;
+    z-index: 10;
+    width: calc(100% - 55px);
+    height: toRem(45);
+    padding: 0 15px;
+    border: none;
+    outline: none;
+    font-size: toRem(25);
+    box-shadow: 0 0 10px black;
+  }
+
+  &__remove {
+    position: absolute;
+    right: toRem(15);
+  }
+
+  &__editing + &__remove {
+    display: none;
+  }
+}
+
+.todo-item__toggle:checked + .todo-item__text {
+  text-decoration: line-through;
+  opacity: .3;
+}

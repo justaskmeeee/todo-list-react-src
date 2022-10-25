@@ -1,0 +1,41 @@
+@import '../../functions/pxToRem.scss';
+
+.todo-input {
+  position: relative;
+}
+
+.create-todo {
+  width: calc(100% - 79px);
+  height: toRem(46);
+  margin: 0;
+  padding: 0;
+  padding-left: toRem(50);
+  padding-right: toRem(25);
+  outline: none;
+  font-size: toRem(25);
+
+  &::placeholder {
+    font-size: toRem(25);
+  }
+}
+
+.toggle-all {
+
+  &__checkbox {
+    display: none;
+  }
+
+  &__arrow {
+    position: absolute;
+    top: toRem(8);
+    left: toRem(5);
+    display: inline-block;
+    transform: rotate(90deg);
+
+    &::before {
+      content: '❯';
+      padding: toRem(10) toRem(15);
+      font-size: toRem(25);
+    }
+  }
+}
