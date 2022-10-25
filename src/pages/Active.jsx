@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import List from "../components/List/List";
-import { filterActiveTodos, countTodo } from "../store/slices/todoSlice";
+import { filterActiveTodos } from "../store/slices/todoSlice";
 
 const Active = () => {
   const todoItems = useSelector(state => state.todos.items);
