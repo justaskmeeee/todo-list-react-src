@@ -1,10 +1,23 @@
+@import './functions/pxToRem.scss';
+
 body {
   margin: 0;
   padding: 0;
-  background: rgb(194, 162, 48);
+  background: rgb(223, 223, 223);
 }
 
 .App {
-  width: 50%;
+  min-width: toRem(400);
+  max-width: toRem(600);
+  width: 100%;
   margin: 0 auto;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
 }
