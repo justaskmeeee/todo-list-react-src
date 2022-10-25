@@ -54,6 +54,7 @@ const Item = ({id, text, completed}) => {
             :
               <input 
                 type='text'
+                maxLength={100}
                 className='todo-item__editing' 
                 value={editValue} 
                 onChange={(event) => editTodoItemText(event)} 

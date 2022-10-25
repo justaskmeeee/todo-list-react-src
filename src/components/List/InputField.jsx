@@ -38,6 +38,7 @@ const InputField = ({text, handleInput, handleAddTodo, handleToggleAll}) => {
       )}
       <input 
         type="text"
+        maxLength={100}
         className='create-todo' 
         value={text}
         onChange={handleInput} 
