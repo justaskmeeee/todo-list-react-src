@@ -6,7 +6,8 @@ import './Item.scss';
 
 const Item = ({id, text, completed}) => {
   const [editValue, setEditValue] = useState(text);
-  const [editing, setEditing] = useState(true);
+  const [isEditing, setIsEditing] = useState(true);
+  const [removeItemIsShown, setRemoveItemIsShown] = useState(false);
   const dispatch = useDispatch();
   
   const setTodoStatus = (id) => {
@@ -20,13 +21,13 @@ const Item = ({id, text, completed}) => {
   const applyEditing = (event) => {
     if (event.key === 'Enter' && editValue.trim() !== '') {
       dispatch(editTodo({id, text: editValue}));
-      setEditing(true);
+      setIsEditing(true);
     }
   }
 
   const cancelEditing = () => {
     dispatch(editTodo({id, text: editValue}));
-    setEditing(true);
+    setIsEditing(true);
   }
 
   const removeTodoItem = (id) => {
@@ -34,19 +35,26 @@ const Item = ({id, text, completed}) => {
   }
 
   return (
-    <li className={completed ? 'completed' : null}>
-      <div>
-        <input 
-          type='checkbox'
-          onChange={() => setTodoStatus({id})}
-          checked={completed}
-        />
-        {editing 
+    <li 
+      onMouseEnter={() => setRemoveItemIsShown(true)}
+      onMouseLeave={() => setRemoveItemIsShown(false)}
+    >
+      <div className="todo-item">
+        {isEditing && (
+          <input 
+            type='checkbox'
+            className='todo-item__toggle'
+            onChange={() => setTodoStatus({id})}
+            checked={completed}
+          />
+        )}
+        {isEditing 
             ? 
-              <label onDoubleClick={() => setEditing(false)}>{editValue}</label> 
+              <label className='todo-item__text' onDoubleClick={() => setIsEditing(false)}>{editValue}</label> 
             :
               <input 
-                type='text' 
+                type='text'
+                className='todo-item__editing' 
                 value={editValue} 
                 onChange={(event) => editTodoItemText(event)} 
                 onKeyDown={(event) => applyEditing(event)}
@@ -54,7 +62,11 @@ const Item = ({id, text, completed}) => {
                 autoFocus
               />
         }
-        <button onClick={() => removeTodoItem({id})}>X</button>
+        {removeItemIsShown && (
+          <button className='todo-item__remove' onClick={() => removeTodoItem({id})}>
+            X
+          </button>
+        )}
       </div>
     </li>
   );
