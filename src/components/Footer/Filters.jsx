@@ -3,10 +3,10 @@ import { NavLink } from "react-router-dom";
 
 const Filters = () => {
   return (
-    <ul>
-      <NavLink to='/'>All</NavLink>
-      <NavLink to='active'>Active</NavLink>
-      <NavLink to='completed'>Completed</NavLink>
+    <ul className='filters'>
+      <NavLink className='filters__link' to='/' end>All</NavLink>
+      <NavLink className='filters__link' to='active'>Active</NavLink>
+      <NavLink className='filters__link' to='completed'>Completed</NavLink>
     </ul>
   );
 }
