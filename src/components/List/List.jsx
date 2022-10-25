@@ -1,11 +1,9 @@
-import { React, useEffect } from "react"; 
-import { useDispatch, useSelector } from "react-redux";
+import { React } from "react"; 
 import Item from "./Item";
-import { countTodo } from "../../store/slices/todoSlice";
 
 const List = ({filter}) => {  
   return (
-    <ul>
+    <ul className='todo-list'>
       {filter.map(item => {
         return <Item 
           {...item}
