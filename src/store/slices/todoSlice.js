@@ -47,7 +47,7 @@ export const todoSlice = createSlice({
       state.count = notCompletedTodos.length;
     },
     clearCompletedTodos(state) {
-      state.items.filter(item => !item.completed);
+      state.items = state.items.filter(item => !item.completed);
     },
     filterActiveTodos(state) {      
       const activeItemsFilter = new Set(state.filters.active);

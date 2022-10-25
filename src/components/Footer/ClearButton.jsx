@@ -10,7 +10,7 @@ const ClearButton = () => {
   }
   
   return (
-    <button onClick={() => clearCompletedTodoItems()}>Clear completed</button>
+    <button className='clear' onClick={() => clearCompletedTodoItems()}>Clear completed</button>
   );
 }
 
