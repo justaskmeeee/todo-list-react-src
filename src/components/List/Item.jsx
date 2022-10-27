@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { todoStatus, todoRemove, editTodo } from "../../store/slices/todoSlice";
+import { todoStatus, todoRemove, editTodo, cancelTodoEditing } from "../../store/slices/todoSlice";
 import './Item.scss';
 
 const Item = ({id, text, completed}) => {
@@ -17,11 +17,18 @@ const Item = ({id, text, completed}) => {
   const editTodoItemText = (event) => {
     setEditValue(event.target.value);
   }
-
-  const applyEditing = (event) => {
-    if (event.key === 'Enter' && editValue.trim() !== '') {
-      dispatch(editTodo({id, text: editValue}));
-      setIsEditing(true);
+  
+  const trackingEditing = (event) => {
+    switch (event.key) {
+      case 'Enter':
+        dispatch(editTodo({id, text: editValue}));
+        setIsEditing(true)
+        break;
+      case 'Escape':
+        dispatch(cancelTodoEditing({id, text: text}))
+        setEditValue(text);
+        setIsEditing(true);
+        break;
     }
   }
 
@@ -43,29 +50,28 @@ const Item = ({id, text, completed}) => {
         {isEditing && (
           <input 
             type='checkbox'
-            className='todo-item__toggle'
+            className='toggle'
             onChange={() => setTodoStatus({id})}
             checked={completed}
           />
         )}
-        {isEditing 
-            ? 
-              <label className='todo-item__text' onDoubleClick={() => setIsEditing(false)}>{editValue}</label> 
-            :
-              <input 
-                type='text'
-                className='todo-item__editing' 
-                value={editValue} 
-                onChange={(event) => editTodoItemText(event)} 
-                onKeyDown={(event) => applyEditing(event)}
-                onBlur={() => cancelEditing()}
-                autoFocus
-              />
+        {isEditing ? 
+          <label className='todo-item__text' onDoubleClick={() => setIsEditing(false)}>
+            {editValue}
+          </label> :
+          <input 
+            type='text'
+            maxLength={100}
+            className='todo-item__editing' 
+            value={editValue} 
+            onChange={(event) => editTodoItemText(event)} 
+            onKeyDown={(event => trackingEditing(event))}
+            onBlur={() => cancelEditing()}
+            autoFocus
+          />
         }
         {removeItemIsShown && (
-          <button className='todo-item__remove' onClick={() => removeTodoItem({id})}>
-            X
-          </button>
+          <button className='todo-item__remove' onClick={() => removeTodoItem({id})}></button>
         )}
       </div>
     </li>

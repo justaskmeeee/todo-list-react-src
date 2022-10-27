@@ -25,19 +25,16 @@ const InputField = ({text, handleInput, handleAddTodo, handleToggleAll}) => {
   return (
     <div className='todo-input'>
       {toggleAllIsShown && (
-        <label className='toggle-all'>
-          <input className='toggle-all__checkbox' type="checkbox" />
-          <span 
-            className="toggle-all__arrow" 
-            style={allTodoItemsCompleted ? 
-              { opacity: '1' } : 
-              { opacity: '.3'}}
-            onClick={handleToggleAll}>
-          </span>
-        </label>
+        <input 
+          type="checkbox" 
+          className='toggle-all'
+          onChange={handleToggleAll} 
+          style={allTodoItemsCompleted ? {opacity: '1'} : {opacity: '.3'}}
+        />
       )}
       <input 
         type="text"
+        maxLength={100}
         className='create-todo' 
         value={text}
         onChange={handleInput} 

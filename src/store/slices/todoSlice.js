@@ -1,10 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { v4 as uuid4 } from 'uuid';
 
+const items = JSON.parse(localStorage.getItem('items')) || [];
+
 export const todoSlice = createSlice({
   name: 'todos',
   initialState: {
-    items: [],
+    items,
     count: 0,
     filters: {
       active: [],
@@ -20,18 +22,29 @@ export const todoSlice = createSlice({
       };
       
       state.items.push(todoItem);
+      localStorage.setItem('items', JSON.stringify(state.items));
     },
     todoRemove(state, action) {
       const todoItemId = action.payload.id;
+
       state.items = state.items.filter(item => item.id !== todoItemId);
+      localStorage.setItem('items', JSON.stringify(state.items));
     },
     todoStatus(state, action) {
       const currentTodoItem = state.items.find(item => item.id === action.payload.id);
 
       currentTodoItem.completed = !currentTodoItem.completed;
+      localStorage.setItem('items', JSON.stringify(state.items));
     },
     editTodo(state, action) {
-      let currentTodoItem = state.items.find(item => item.id === action.payload.id);
+      const currentTodoItem = state.items.find(item => item.id === action.payload.id);
+
+      currentTodoItem.text = action.payload.text;
+      state.items = state.items.filter(item => item.text.trim() !== '');
+      localStorage.setItem('items', JSON.stringify(state.items));
+    },
+    cancelTodoEditing(state, action) {
+      const currentTodoItem = state.items.find(item => item.id === action.payload.id);
 
       currentTodoItem.text = action.payload.text;
     },
@@ -41,6 +54,8 @@ export const todoSlice = createSlice({
       !allItemsAreToggled ?
         state.items.forEach(item => item.completed = true) :
         state.items.forEach(item => item.completed = false);
+
+      localStorage.setItem('items', JSON.stringify(state.items));
     },
     countTodo(state) {
       const notCompletedTodos = state.items.filter(item => !item.completed); 
@@ -48,6 +63,7 @@ export const todoSlice = createSlice({
     },
     clearCompletedTodos(state) {
       state.items = state.items.filter(item => !item.completed);
+      localStorage.setItem('items', JSON.stringify(state.items));
     },
     filterActiveTodos(state) {      
       const activeItemsFilter = new Set(state.filters.active);
@@ -74,6 +90,6 @@ export const todoSlice = createSlice({
   }
 }) 
 
-export const { todoAdd, todoRemove, todoStatus, editTodo, toggleTodos, countTodo, clearCompletedTodos, filterActiveTodos, filterCompletedTodos } = todoSlice.actions;
+export const { todoAdd, todoRemove, todoStatus, editTodo, cancelTodoEditing, toggleTodos, countTodo, clearCompletedTodos, filterActiveTodos, filterCompletedTodos } = todoSlice.actions;
 
 export default todoSlice.reducer;
