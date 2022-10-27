@@ -5,37 +5,41 @@
 }
 
 .create-todo {
-  width: calc(100% - 79px);
-  height: toRem(46);
+  width: calc(100% - 75px);
+  height: toRem(60);
   margin: 0;
   padding: 0;
   padding-left: toRem(50);
   padding-right: toRem(25);
+  border: none;
+  border-bottom: 1px solid #5a189a;
   outline: none;
   font-size: toRem(25);
+  color: #240046;
 
   &::placeholder {
     font-size: toRem(25);
+    font-style: italic;
+    opacity: .5;
   }
 }
 
 .toggle-all {
-
-  &__checkbox {
-    display: none;
+  position: absolute;
+  top: toRem(15);
+  left: toRem(20);
+  margin: 0;
+  transform: rotate(90deg);
+  opacity: .3;
+  appearance: none;
+  
+  &:checked {
+    opacity: 1;
   }
 
-  &__arrow {
-    position: absolute;
-    top: toRem(8);
-    left: toRem(5);
-    display: inline-block;
-    transform: rotate(90deg);
-
-    &::before {
-      content: '❯';
-      padding: toRem(10) toRem(15);
-      font-size: toRem(25);
-    }
+  &::before {
+    content: '❯';
+    font-size: toRem(25);
+    color: #240046;
   }
 }
