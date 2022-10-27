@@ -1,8 +1,10 @@
 @import '/src/functions/pxToRem.scss';
 
 .title {
+  margin: toRem(30) 0;
   text-align: center;
+  font-family: 'Comfortaa', cursive;
   font-size: toRem(60);
-  color: white;
-  text-shadow: toRem(5) 0 rgb(174, 178, 181); 
+  color: #ff9e00;
+  text-shadow: toRem(5) 0 #7b2cbf; 
 }

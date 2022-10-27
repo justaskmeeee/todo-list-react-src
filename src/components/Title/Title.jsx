@@ -3,9 +3,9 @@ import './Title.scss';
 
 const Title = () => {
   return (
-    <div>
+    <header>
       <h1 className="title">TODOS</h1>
-    </div>
+    </header>
   );
 }
 
