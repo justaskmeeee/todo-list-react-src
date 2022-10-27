@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.scss';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import All from './pages/All';
 import Active from './pages/Active';
 import Completed from './pages/Completed';
@@ -14,6 +14,7 @@ function App() {
           <Route index element={<All />} />
           <Route path='active' element={<Active />} />
           <Route path='completed' element={<Completed />} />
+          <Route path='*' element={<Navigate to='/'  replace />} />
         </Route>
       </Routes>
     </div>
