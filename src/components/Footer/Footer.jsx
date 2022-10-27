@@ -26,17 +26,17 @@ const Footer = () => {
   }, [todoItems]);
 
   return (
-    <div>
+    <footer>
       {footerIsShown && (
         <div className="footer">
-      <Count value={countOfTodoItems} />
-      <Filters />
-      {buttonIsShown && 
-        <ClearButton />
-      }
-    </div>
+          <Count value={countOfTodoItems} />
+          <Filters />
+          {buttonIsShown && 
+            <ClearButton />
+          }
+        </div>
       )}
-    </div>
+    </footer>
     
   );
 }

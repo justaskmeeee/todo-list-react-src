@@ -1,39 +1,82 @@
 @import '../../functions/pxToRem.scss';
 
 .footer {
+  position: relative;
   display: flex;
   align-items: center;
-  gap: toRem(65);
+  justify-content: flex-start;
   width: 100%;
-  height: toRem(30);
-  border: 1px solid black;
+  height: toRem(40);
+  border: none;
   background: rgb(255, 255, 255);
+  font-family: 'Rubik', sans-serif;
 }
 
 .count {
+  display: block;
+  width: 25%;
   margin-left: toRem(15);
-  font-size: toRem(20);
+  font-size: toRem(15);
+  color: #3c096c;
+
+  @media (min-width: toRem(361)) and (max-width: toRem(500)) {
+    font-size: 3vw;
+  }
+
+  @media (max-width: toRem(360)) {
+    font-size: toRem(13);
+  }
 }
 
 .filters {
+  display: flex;
+  justify-content: center;
+  width: 40%;
+
   &__link {
     margin: 0 toRem(5);
-    padding: 0 toRem(5);
+    padding: toRem(3) toRem(5);
+    border: 1px solid transparent;
     text-decoration: none;
-    font-size: toRem(20);
-    color: rgb(138, 138, 138);
+    font-size: toRem(15);
+    color: #3c096c;
+    -webkit-tap-highlight-color: transparent;
+
+    @media (min-width: toRem(361)) and (max-width: toRem(500)) {
+      font-size: 3vw;
+    }
+
+    @media (max-width: toRem(360)) {
+      margin: 0 toRem(2);
+      padding: toRem(1) toRem(3);
+      font-size: toRem(13);
+    }
 
     &:hover:not(.active) {
-      border: 1px solid rgba(0, 0, 0, .5);
+      border: 1px solid rgba(69, 9, 108, .5);
       border-radius: toRem(5);
     }
   }
 }
 
 .clear {
+  position: absolute;
+  right: 0;
+  width: 25%;
   margin-right: toRem(15);
   border: none;
   background: none;
+  font-size: toRem(15);
+  color: #3c096c;
+
+  @media (min-width: toRem(361)) and (max-width: toRem(500)) {
+    font-size: 3vw;
+  }
+  
+  @media (max-width: toRem(360)) {
+    width: 27%;
+    font-size: toRem(13);
+  }
 
   &:hover {
     cursor: pointer;
@@ -42,6 +85,6 @@
 }
 
 .active {
-  border: 1px solid rgb(0, 0, 0);
+  border: 1px solid rgba(69, 9, 108, 1);
   border-radius: toRem(5);
 }
