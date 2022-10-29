@@ -31,9 +31,7 @@ const Footer = () => {
         <div className="footer">
           <Count value={countOfTodoItems} />
           <Filters />
-          {buttonIsShown && 
-            <ClearButton />
-          }
+          <ClearButton visibility={buttonIsShown} />
         </div>
       )}
     </footer>

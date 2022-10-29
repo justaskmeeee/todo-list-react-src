@@ -13,6 +13,10 @@
   color: #3c096c;
   background: rgb(255, 255, 255);
 
+  @media (max-width: toRem(768)) {
+    font-size: toRem(20);
+  }
+
   &__text {
     width: calc(100% - 100px);
     max-width: toRem(600);
@@ -32,10 +36,16 @@
     width: calc(100% - 65px);
     height: toRem(60);
     padding: 0 toRem(15);
-    border: none;
+    border: 1px solid #5a189a;
+    box-shadow: 0 0 10px #5a189a;
     outline: none;
     font-size: toRem(25);
-    box-shadow: 0 0 10px #5a189a;
+    color: #3c096c;
+    appearance: none;
+
+    @media (max-width: toRem(768)) {
+      font-size: toRem(20);
+    }
   }
 
   &__remove {

@@ -17,10 +17,18 @@
   font-size: toRem(25);
   color: #240046;
 
+  @media (max-width: toRem(768)) {
+    font-size: toRem(20);
+  }
+
   &::placeholder {
     font-size: toRem(25);
     font-style: italic;
     opacity: .5;
+
+    @media (max-width: toRem(390)) {
+      font-size: 6vw;
+    }
   }
 }
 
