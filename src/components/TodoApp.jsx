@@ -26,7 +26,7 @@ const TodoApp = () => {
   }
 
   return (
-    <div>
+    <div className="container">
       <Title />
       <InputField 
         text={value}

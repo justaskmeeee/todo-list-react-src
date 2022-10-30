@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { clearCompletedTodos } from "../../store/slices/todoSlice";
 
-const ClearButton = () => {
+const ClearButton = ({visibility}) => {
   const dispatch = useDispatch();
 
   const clearCompletedTodoItems = () => {
@@ -10,7 +10,12 @@ const ClearButton = () => {
   }
   
   return (
-    <button className='clear' onClick={() => clearCompletedTodoItems()}>Clear completed</button>
+    <button 
+      className={visibility ? 'clear clear_show' : 'clear clear_hide'}
+      onClick={() => clearCompletedTodoItems()}
+    >
+      Clear completed
+    </button>
   );
 }
 
