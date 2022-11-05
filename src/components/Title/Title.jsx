@@ -1,10 +1,10 @@
 import React from "react";
-import './Title.scss';
+import s from './Title.module.scss';
 
 const Title = () => {
   return (
     <header>
-      <h1 className="title">TODOS</h1>
+      <h1 className={s.title}>TODOS</h1>
     </header>
   );
 }

@@ -1,10 +1,10 @@
-@import '../../functions/pxToRem.scss';
+@import '../../styles/functions/pxToRem.scss';
 
-.todo-input {
+.todoInput {
   position: relative;
 }
 
-.create-todo {
+.createTodo {
   width: calc(100% - 75px);
   height: toRem(60);
   margin: 0;
@@ -32,13 +32,12 @@
   }
 }
 
-.toggle-all {
+.toggleAll {
   position: absolute;
   top: toRem(15);
   left: toRem(20);
   margin: 0;
   transform: rotate(90deg);
-  opacity: .3;
   appearance: none;
   
   &:checked {
@@ -50,4 +49,12 @@
     font-size: toRem(25);
     color: #240046;
   }
+}
+
+.highlight {
+  opacity: 1;
+}
+
+.hide {
+  opacity: .3;
 }

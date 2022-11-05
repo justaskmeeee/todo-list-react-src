@@ -1,0 +1,16 @@
+@import '../../styles/functions/pxToRem.scss';
+
+.count {
+  margin-left: toRem(15);
+  font-size: toRem(15);
+  color: #3c096c;
+
+  @media (max-width: toRem(360)) {
+    margin-left: toRem(5);
+    font-size: toRem(12);
+  }
+
+  @media (min-width: toRem(361)) and (max-width: toRem(500)) {
+    font-size: 3vw;
+  }
+}

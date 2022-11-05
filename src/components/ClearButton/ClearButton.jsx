@@ -1,6 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { clearCompletedTodos } from "../../store/slices/todoSlice";
+import classNames from "classnames";
+import s from './ClearButton.module.scss';
 
 const ClearButton = ({visibility}) => {
   const dispatch = useDispatch();
@@ -9,10 +11,15 @@ const ClearButton = ({visibility}) => {
     dispatch(clearCompletedTodos());
   }
   
+  const clear = classNames(s.clear, {
+    [s.clear_show]: visibility,
+    [s.clear_hide]: !visibility,
+  });
+
   return (
     <button 
-      className={visibility ? 'clear clear_show' : 'clear clear_hide'}
-      onClick={() => clearCompletedTodoItems()}
+      className={clear}
+      onClick={clearCompletedTodoItems}
     >
       Clear completed
     </button>

@@ -1,8 +1,7 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { todoStatus, todoRemove, editTodo, cancelTodoEditing } from "../../store/slices/todoSlice";
-import './Item.scss';
+import s from './Item.module.scss';
 
 const Item = ({id, text, completed}) => {
   const [editValue, setEditValue] = useState(text);
@@ -46,32 +45,32 @@ const Item = ({id, text, completed}) => {
       onMouseEnter={() => setRemoveItemIsShown(true)}
       onMouseLeave={() => setRemoveItemIsShown(false)}
     >
-      <div className="todo-item">
+      <div className={s.todoItem}>
         {isEditing && (
           <input 
             type='checkbox'
-            className='toggle'
+            className={s.toggle}
             onChange={() => setTodoStatus({id})}
             checked={completed}
           />
         )}
         {isEditing ? 
-          <label className='todo-item__text' onDoubleClick={() => setIsEditing(false)}>
+          <label className={s.todoItem__text} onDoubleClick={() => setIsEditing(false)}>
             {editValue}
           </label> :
           <input 
             type='text'
             maxLength={100}
-            className='todo-item__editing' 
+            className={s.todoItem__editing} 
             value={editValue} 
-            onChange={(event) => editTodoItemText(event)} 
-            onKeyDown={(event => trackingEditing(event))}
-            onBlur={() => cancelEditing()}
+            onChange={editTodoItemText} 
+            onKeyDown={trackingEditing}
+            onBlur={cancelEditing}
             autoFocus
           />
         }
         {removeItemIsShown && (
-          <button className='todo-item__remove' onClick={() => removeTodoItem({id})}></button>
+          <button className={s.todoItem__remove} onClick={() => removeTodoItem({id})}></button>
         )}
       </div>
     </li>

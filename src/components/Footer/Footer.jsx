@@ -1,34 +1,31 @@
-import { React, useEffect } from "react";
-import Count from "./Count";
-import Filters from "./Filters";
-import ClearButton from "./ClearButton";
+import { React, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { selectTodoItems, selectTodoItemsCount, todoItemCompletionCheck } from "../../store/selectors";
 import { countTodo } from "../../store/slices/todoSlice";
-import './Footer.scss';
-import { useState } from "react";
-
-const todoItemCompletionCheck = (items) => {
-  return items.some(item => item.completed);
-}
+import Count from "../Count/Count";
+import Filters from "../Filters/Filters";
+import ClearButton from "../ClearButton/ClearButton";
+import s from './Footer.module.scss';
 
 const Footer = () => {
-  const todoItems = useSelector(state => state.todos.items);
-  const countOfTodoItems = useSelector(state => state.todos.count);
+  const todoItems = useSelector(selectTodoItems);
+  const countOfTodoItems = useSelector(selectTodoItemsCount);
   const dispatch = useDispatch();
   const [footerIsShown, setFooterIsShown] = useState(false);
   const [buttonIsShown, setButtonIsShown] = useState(false);
+  const someTodoItemIsChecked = useSelector(todoItemCompletionCheck);
 
   useEffect(() => {
     const currentCountOfTodoItems = todoItems.length;
-    currentCountOfTodoItems > 0 ? setFooterIsShown(true) : setFooterIsShown(false);
-    todoItemCompletionCheck(todoItems) ? setButtonIsShown(true) : setButtonIsShown(false);
+    setFooterIsShown(currentCountOfTodoItems > 0);
+    setButtonIsShown(someTodoItemIsChecked);
     dispatch(countTodo());
   }, [todoItems]);
 
   return (
     <footer>
       {footerIsShown && (
-        <div className="footer">
+        <div className={s.footer}>
           <Count value={countOfTodoItems} />
           <Filters />
           <ClearButton visibility={buttonIsShown} />

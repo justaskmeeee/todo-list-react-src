@@ -1,6 +1,6 @@
-@import '../../functions/pxToRem.scss';
+@import '../../styles/functions/pxToRem.scss';
 
-.todo-item {
+.todoItem {
   position: relative;
   display: flex;
   align-items: center;
@@ -109,7 +109,7 @@
   }
 }
 
-.toggle:checked + .todo-item__text {
+.toggle:checked + .todoItem__text {
   text-decoration: line-through;
   opacity: .3;
   animation: smooth-in .1s ease-in;

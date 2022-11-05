@@ -1,10 +1,11 @@
 import { React, useState } from "react";
-import Title from "./Title/Title";
-import InputField from "./List/InputField";
 import { Outlet } from "react-router-dom";
-import Footer from "./Footer/Footer";
 import { useDispatch } from "react-redux";
-import { todoAdd, toggleTodos } from "../store/slices/todoSlice";
+import { todoAdd, toggleTodos } from "../../store/slices/todoSlice";
+import Title from "../Title/Title";
+import InputField from "../InputField/InputField";
+import Footer from "../Footer/Footer";
+import s from './TodoApp.module.scss';
 
 const TodoApp = () => {
   const [value, setValue] = useState('');
@@ -26,13 +27,13 @@ const TodoApp = () => {
   }
 
   return (
-    <div className="container">
+    <div className={s.container}>
       <Title />
       <InputField 
         text={value}
-        handleToggleAll={() => toggleAllTodoItems()}
-        handleInput={(event) => setInputValue(event)} 
-        handleAddTodo={(event) => addNewTodo(event)}
+        handleToggleAll={toggleAllTodoItems}
+        handleInput={setInputValue} 
+        handleAddTodo={addNewTodo}
       />
       <Outlet />
       <Footer />
