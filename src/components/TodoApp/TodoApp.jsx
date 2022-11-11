@@ -1,7 +1,8 @@
 import { React, useState } from "react";
 import { Outlet } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { todoAdd, toggleTodos } from "../../store/slices/todoSlice";
+import { selectTodoItems, checkTheCompletionOfAllTodoItems } from "../../store/selectors";
 import Title from "../Title/Title";
 import InputField from "../InputField/InputField";
 import Footer from "../Footer/Footer";
@@ -9,6 +10,8 @@ import s from './TodoApp.module.scss';
 
 const TodoApp = () => {
   const [value, setValue] = useState('');
+  const todoItems = useSelector(selectTodoItems);  
+  const allTodoItemsIsCompleted = useSelector(checkTheCompletionOfAllTodoItems);
   const dispatch = useDispatch();
 
   const setInputValue = (event) => {
@@ -30,6 +33,8 @@ const TodoApp = () => {
     <div className={s.container}>
       <Title />
       <InputField 
+        items={todoItems}
+        isCompleted={allTodoItemsIsCompleted}
         text={value}
         handleToggleAll={toggleAllTodoItems}
         handleInput={setInputValue} 

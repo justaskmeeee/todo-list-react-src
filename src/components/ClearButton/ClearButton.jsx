@@ -13,7 +13,6 @@ const ClearButton = ({visibility}) => {
   
   const clear = classNames(s.clear, {
     [s.clear_show]: visibility,
-    [s.clear_hide]: !visibility,
   });
 
   return (

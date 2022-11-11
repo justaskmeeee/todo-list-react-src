@@ -38,11 +38,8 @@
   left: toRem(20);
   margin: 0;
   transform: rotate(90deg);
+  opacity: .3;
   appearance: none;
-  
-  &:checked {
-    opacity: 1;
-  }
 
   &::before {
     content: '❯';
@@ -53,8 +50,4 @@
 
 .highlight {
   opacity: 1;
-}
-
-.hide {
-  opacity: .3;
 }

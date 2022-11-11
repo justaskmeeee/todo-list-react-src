@@ -1,24 +1,17 @@
 import React, {useState, useEffect} from "react";
-import { useSelector } from "react-redux";
-import { selectTodoItems, checkTheCompletionOfAllTodoItems } from "../../store/selectors";
 import classNames from "classnames";
 import s from './InputField.module.scss';
 
-const InputField = ({text, handleInput, handleAddTodo, handleToggleAll}) => {
+const InputField = ({items,isCompleted, text, handleInput, handleAddTodo, handleToggleAll}) => {
   const [toggleAllIsShown, setToggleAllIsShown] = useState(false);
-  const [allTodoItemsCompleted, setAllTodoItemsCompleted] = useState(false);
-  const todoItems = useSelector(selectTodoItems);  
-  const allTodoItemsIsCompleted = useSelector(checkTheCompletionOfAllTodoItems);
 
   useEffect(() => {
-    const countOfTodoItems = todoItems.length;
-    setAllTodoItemsCompleted(allTodoItemsIsCompleted);
+    const countOfTodoItems = items.length;
     setToggleAllIsShown(countOfTodoItems > 0);
-  }, [todoItems]);
+  }, [items]);
 
   const toggleAll = classNames(s.toggleAll, {
-    [s.highlight]: allTodoItemsCompleted,
-    [s.hide]: !allTodoItemsCompleted,
+    [s.highlight]: isCompleted,
   })
   
   return (
